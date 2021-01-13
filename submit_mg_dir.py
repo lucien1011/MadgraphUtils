@@ -1,6 +1,7 @@
 import os
 
-in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/201210_mg_dyll/"
+#in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/201211_mg_dyll/"
+in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210112_mg_dyll/"
 run_name = "run_01"
 slurm_script_name = "slurm.sh"
 
@@ -26,8 +27,8 @@ gzip -d tag_1_pythia_events.hep.gz
             job_name,
             "kin.ho.lo@cern.ch",
             "1",
-            "1gb",
-            "00:30:00",
+            "4gb",
+            "03:00:00",
             "",
             commands,
             )

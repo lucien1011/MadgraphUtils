@@ -35,7 +35,7 @@ for ijob,f in enumerate(input_file_list):
         "kin.ho.lo@cern.ch",
         "1",
         "1gb",
-        "00:10:00",
+        "01:00:00",
         os.path.join(out_dir,each_job_name),
         commands,
         )

@@ -1,7 +1,8 @@
 import os
 
 #in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/201211_mg_dyll/"
-in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210112_mg_dyll/"
+#in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210112_mg_dyll/"
+in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210115_mg_zhhel/"
 run_name = "run_01"
 slurm_script_name = "slurm.sh"
 

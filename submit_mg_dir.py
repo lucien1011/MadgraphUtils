@@ -1,10 +1,11 @@
-import os
+import os,sys
 
-#in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/201211_mg_dyll/"
-#in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210112_mg_dyll/"
-in_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210115_mg_zhhel/"
-run_name = "run_01"
-slurm_script_name = "slurm.sh"
+from utils.ObjDict import read_from_file_python2
+
+cfg = read_from_file_python2(sys.argv[1])
+in_dir = cfg.param_dict.out_mg_dir
+run_name = cfg.param_dict.mg_run_name
+slurm_script_name = cfg.param_dict.mg_slurm_script_name
 
 def submit(work_dir,run_name,slurm_script_name,job_name,):
     from SLURMWorker.SLURMWorker import SLURMWorker

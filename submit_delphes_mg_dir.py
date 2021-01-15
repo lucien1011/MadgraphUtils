@@ -1,20 +1,31 @@
-import os,glob,subprocess
+import os,glob,subprocess,sys
 
 from SLURMWorker.SLURMWorker import SLURMWorker
 
-# ______________________________________________________________________ ||
-in_pattern = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210112_mg_dyll/*/Events/run_01/tag_1_pythia_events.hep"
-job_name            = "210112_mg_dyll_MuonTreeProducer"
-out_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Delphes/210112_mg_dyll/"
+from utils.ObjDict import read_from_file_python2
+from utils.mkdir_p import mkdir_p
 
-cmssw_dir           = "/blue/avery/kinho.lo/Delphes/CMSSW_10_0_5/src/"
-delphes_dir         = "/blue/avery/kinho.lo/Delphes/delphes/"
+cfg = read_from_file_python2(sys.argv[1])
+
+# ______________________________________________________________________ ||
+in_pattern = os.path.join(
+        cfg.param_dict.out_mg_dir,
+        "*",
+        "Events",
+        cfg.param_dict.mg_run_name,
+        "tag_1_pythia_events.hep",
+        )
+job_name = cfg.param_dict.delphes_job_name 
+out_dir = cfg.param_dict.out_delphes_dir
+cmssw_dir = cfg.param_dict.cmssw_dir
+delphes_dir = cfg.param_dict.delphes_dir
 
 # ______________________________________________________________________ ||
 
 input_file_list = [f for f in glob.glob(in_pattern)]
 input_file_list.sort()
 n_file = len(input_file_list)
+mkdir_p(out_dir)
 for ijob,f in enumerate(input_file_list):
 
     mass_str = f.split("/")[-4]

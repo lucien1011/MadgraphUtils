@@ -16,6 +16,9 @@ param_dict = ObjDict(
         out_delphes_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Delphes/210115_mg_hzz_hel_v2/",
         cmssw_dir = "/blue/avery/kinho.lo/Delphes/CMSSW_10_0_5/src/",
         delphes_dir = "/blue/avery/kinho.lo/Delphes/delphes/",
-        delphes_job_name = "210115_mg_hzz_hel_delphes"
+        delphes_job_name = "210115_mg_hzz_hel_delphes",
+
+        out_litetree_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/LiteTree/210115_mg_hzz_hel_v2/",
+        litetree_job_name = "210115_mg_hzz_hel_LiteTree",
 
         )

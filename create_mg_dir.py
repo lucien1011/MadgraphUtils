@@ -11,10 +11,17 @@ for key in cfg.param_dict:
     exec(key+" = cfg.param_dict."+key)
 
 mkdir_p(out_mg_dir)
-for n in np.random.rand(n_dir):
+for _ in range(n_dir):
+    
+    n = np.random.rand()
     param = param_low + n * (param_high-param_low)
-    param_dir = os.path.join(out_mg_dir,str(param)+"/")
-    print("Copying directory as param "+str(param))
-    copy_tree(template_dir,param_dir)
-    subprocess.call(["sed", "-i", "-e",  's/'+param_name+'/'+str(param)+'/g', os.path.join(param_dir,"Cards/param_card.dat")])
-    subprocess.call(["sed", "-i", "-e",  's/RUNEVENT/'+str(n_evt)+'/g', os.path.join(param_dir,"Cards/run_card.dat")])
+    seed = np.random.randint(seed_low,seed_high)
+    
+    out_dir = os.path.join(out_mg_dir,"_".join([str(param),str(seed)])+"/")
+    
+    print("Copying directory as param, seed "+str(param),str(seed))
+
+    copy_tree(template_dir,out_dir)
+    subprocess.call(["sed", "-i", "-e",  's/'+param_name+'/'+str(param)+'/g', os.path.join(out_dir,"Cards/param_card.dat")])
+    subprocess.call(["sed", "-i", "-e",  's/'+seed_name+'/'+str(seed)+'/g', os.path.join(out_dir,"Cards/run_card.dat")])
+    subprocess.call(["sed", "-i", "-e",  's/RUNEVENT/'+str(n_evt)+'/g', os.path.join(out_dir,"Cards/run_card.dat")])

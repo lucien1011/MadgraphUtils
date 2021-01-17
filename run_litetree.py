@@ -21,25 +21,20 @@ input_file_list = [f for f in glob.glob(input_file_pattern)]
 input_file_list.sort()
 n_file = len(input_file_list)
 mkdir_p(out_dir)
+commands_list = [
+    "cd "+cmssw_dir,
+    "eval `scramv1 runtime -sh`",
+    "cd "+delphes_dir,
+    ]
 for ijob,f in enumerate(input_file_list):
-    each_job_name = job_name+"_"+str(ijob)
     out_file_name = os.path.basename(f)
-    commands = "\n".join([
-        "cd "+cmssw_dir,
-        "eval `scramv1 runtime -sh`",
-        "cd "+delphes_dir,
-        "root -b -q \'"+script_name+"(\"{inputFile}\",\"{outputFile}\")\'".format(inputFile=f,outputFile=os.path.join(out_dir,out_file_name)),
-        ],)
-    script_file_name = os.path.join(out_dir,each_job_name+".cfg")
-    worker = SLURMWorker()
-    worker.make_sbatch_script(
-        script_file_name,
-        job_name,
-        "kin.ho.lo@cern.ch",
-        "1",
-        "1gb",
-        "01:00:00",
-        os.path.join(out_dir,each_job_name),
-        commands,
-        )
-    #worker.sbatch_submit(script_file_name)
+    commands_list.append("root -b -q \'"+script_name+"(\"{inputFile}\",\"{outputFile}\")\'".format(inputFile=f,outputFile=os.path.join(out_dir,out_file_name)))
+    
+script_file_name = os.path.join(out_dir,job_name+".sh")
+worker = SLURMWorker()
+worker.make_sh_script(
+    script_file_name,
+    job_name,
+    "\n".join(commands_list),
+    )
+#worker.sbatch_submit(script_file_name)

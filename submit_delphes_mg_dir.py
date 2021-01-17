@@ -28,6 +28,8 @@ n_file = len(input_file_list)
 mkdir_p(out_dir)
 for ijob,f in enumerate(input_file_list):
 
+    print("Working on ",f)
+
     mass_str = f.split("/")[-4]
     each_job_name = job_name+"_"+mass_str
     out_file_name = os.path.basename(f)

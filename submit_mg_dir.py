@@ -30,7 +30,7 @@ gzip -d tag_1_pythia_events.hep.gz
             "kin.ho.lo@cern.ch",
             "4",
             "4gb",
-            "03:00:00",
+            "06:00:00",
             os.path.join(work_dir,job_name),
             commands,
             )

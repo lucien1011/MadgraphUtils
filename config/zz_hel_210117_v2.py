@@ -3,8 +3,8 @@ from utils.ObjDict import ObjDict
 param_dict = ObjDict(
         template_dir = "mg_zz_hel_template",
         out_mg_dir = "/cmsuf/data/store/user/t2/users/klo/MLHEP/Madgraph/210117_mg_zz_hel_v2/",
-        n_dir = 10,
-        n_evt = 1000,
+        n_dir = 100,
+        n_evt = 5000,
         param_low = 0.,
         param_high = 0.,
         param_name = 'sm',

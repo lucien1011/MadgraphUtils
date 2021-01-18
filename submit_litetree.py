@@ -42,4 +42,4 @@ for ijob,f in enumerate(input_file_list):
         os.path.join(out_dir,each_job_name),
         commands,
         )
-    #worker.sbatch_submit(script_file_name)
+    worker.sbatch_submit(script_file_name)
